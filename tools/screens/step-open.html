@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="light dark" />
+    <title>step-open</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        width: 3420px;
+        height: 1700px;
+        overflow: hidden;
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      :root {
+        --page: #ffffff;
+        --bar: #dee1e6;
+        --bar-top: #ffffff;
+        --text: #202124;
+        --muted: #5f6368;
+        --field: #f1f3f4;
+        --line: #dadce0;
+        --e-bg: #f4f6f9;
+        --e-panel: #ffffff;
+        --e-panel-2: #eef1f5;
+        --e-line: #dbe1e8;
+        --e-text: #17202a;
+        --e-muted: #5b6773;
+        --e-chip: #eef1f5;
+        --e-on: #2f6bff;
+        --e-accent: #2563eb;
+        --e-accent-2: #14b8a6;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --page: #202124;
+          --bar: #202124;
+          --bar-top: #292a2d;
+          --text: #e8eaed;
+          --muted: #9aa0a6;
+          --field: #303134;
+          --line: #3c4043;
+          --e-bg: #0f1216;
+          --e-panel: #171b21;
+          --e-panel-2: #1e242c;
+          --e-line: #2a323c;
+          --e-text: #e7ecf2;
+          --e-muted: #9aa7b4;
+          --e-chip: #232b34;
+        }
+      }
+
+      body {
+        background: var(--page);
+        color: var(--text);
+      }
+
+      .chrome-top {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 96px;
+        z-index: 4;
+        pointer-events: none;
+      }
+
+      .tabs {
+        height: 38px;
+        background: var(--bar);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav {
+        height: 58px;
+        background: var(--bar-top);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .omnibox {
+        position: absolute;
+        left: 120px;
+        top: 11px;
+        width: 820px;
+        height: 36px;
+        border-radius: 18px;
+        background: var(--field);
+        display: flex;
+        align-items: center;
+        padding: 0 14px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      /* Extension icon target (3122, 126) */
+      .ext {
+        position: absolute;
+        left: 3122px;
+        top: 126px;
+        transform: translate(-50%, -50%);
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        overflow: hidden;
+        z-index: 6;
+        box-shadow: 0 0 0 1px rgb(255 255 255 / 8%);
+      }
+
+      .ext img {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .puzzle {
+        position: absolute;
+        left: 3195px;
+        top: 127px;
+        transform: translate(-50%, -50%);
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        color: var(--text);
+        opacity: 0.9;
+        z-index: 5;
+      }
+
+      .puzzle svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .editor {
+        position: absolute;
+        top: 96px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        background: var(--e-bg);
+        color: var(--e-text);
+        font-size: 13px;
+      }
+
+      .e-top {
+        display: flex;
+        align-items: stretch;
+        gap: 8px;
+        padding: 8px 12px;
+        background: var(--e-panel);
+        border-bottom: 1px solid var(--e-line);
+      }
+
+      .e-brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 700;
+        padding-right: 6px;
+      }
+
+      .dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 4px;
+        background: linear-gradient(135deg, var(--e-accent), var(--e-accent-2));
+      }
+
+      .e-group {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 5px 8px 6px;
+        border: 1px solid var(--e-line);
+        border-radius: 10px;
+        background: var(--e-panel-2);
+      }
+
+      .gl {
+        color: var(--e-muted);
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .chips {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+
+      .chip {
+        padding: 4px 9px;
+        border: 1px solid var(--e-line);
+        border-radius: 8px;
+        background: var(--e-chip);
+        font-size: 12px;
+      }
+
+      .chip.on {
+        background: var(--e-on);
+        border-color: var(--e-on);
+        color: #fff;
+      }
+
+      .stage {
+        position: absolute;
+        inset: 52px 0 28px;
+        background: repeating-conic-gradient(var(--e-panel-2) 0% 25%, transparent 0% 50%)
+          50% / 24px 24px;
+      }
+
+      .drop {
+        position: absolute;
+        left: 50%;
+        top: 42%;
+        transform: translate(-50%, -50%);
+        width: 520px;
+        padding: 44px 36px;
+        border: 2px dashed var(--e-line);
+        border-radius: 18px;
+        background: var(--e-panel);
+        text-align: center;
+      }
+
+      .drop h2 {
+        margin: 10px 0 4px;
+        font-size: 22px;
+      }
+
+      .drop p {
+        margin: 0;
+        color: var(--e-muted);
+        font-size: 13px;
+      }
+
+      .status {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 14px;
+        background: var(--e-panel);
+        border-top: 1px solid var(--e-line);
+        color: var(--e-muted);
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chrome-top">
+      <div class="tabs"></div>
+      <div class="nav">
+        <div class="omnibox">Blur Image Online — Blur &amp; Redact Editor</div>
+      </div>
+    </div>
+
+    <div class="ext">
+      <img src="../../assets/icon.svg" alt="" />
+    </div>
+
+    <div class="puzzle">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          fill="currentColor"
+          d="M20.5 11H19V7.5A1.5 1.5 0 0 0 17.5 6H15V4.5a2.5 2.5 0 0 0-5 0V6H7.5A1.5 1.5 0 0 0 6 7.5V10H4.5a2.5 2.5 0 0 0 0 5H6v2.5A1.5 1.5 0 0 0 7.5 19H10v1.5a2.5 2.5 0 0 0 5 0V19h2.5a1.5 1.5 0 0 0 1.5-1.5V15h1.5a2.5 2.5 0 0 0 0-5Z"
+        />
+      </svg>
+    </div>
+
+    <div class="editor">
+      <div class="e-top">
+        <div class="e-brand"><span class="dot"></span>Blur Image Online</div>
+        <div class="e-group">
+          <span class="gl">Tool</span>
+          <span class="chips">
+            <span class="chip on">Brush</span>
+            <span class="chip">Box</span>
+          </span>
+        </div>
+        <div class="e-group">
+          <span class="gl">Effect</span>
+          <span class="chips">
+            <span class="chip on">Blur</span>
+            <span class="chip">Pixelate</span>
+          </span>
+        </div>
+        <div class="e-group">
+          <span class="gl">File</span>
+          <span class="chips"><span class="chip">Open</span><span class="chip">Save</span></span>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="drop">
+          <div style="font-size: 40px">🖼</div>
+          <h2>Drop a photo here</h2>
+          <p>Paste, or open a file. Nothing is uploaded.</p>
+        </div>
+      </div>
+      <div class="status">
+        <span>No image loaded</span>
+        <span>100% local · zero uploads</span>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,499 @@
+:root {
+  color-scheme: light dark;
+
+  --bg: #ffffff;
+  --fg: #14161a;
+  --fg-muted: #5b616e;
+  --line: #e3e5ea;
+  --accent: #2563eb;
+  --marker: #e0393e;
+  --shot-shadow: 0 2px 4px rgb(16 18 24 / 6%), 0 18px 44px rgb(16 18 24 / 14%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1216;
+    --fg: #e9eaee;
+    --fg-muted: #9aa1ae;
+    --line: #262a33;
+    --accent: #3b82f6;
+    --marker: #ff5c62;
+    --shot-shadow: 0 2px 4px rgb(0 0 0 / 30%), 0 18px 50px rgb(0 0 0 / 45%);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  width: min(1000px, 100% - 40px);
+  margin-inline: auto;
+}
+
+/* Header ------------------------------------------------------------- */
+
+.masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0 4px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  color: inherit;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.brand img {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav a {
+  color: var(--fg-muted);
+  font-size: 14.5px;
+  font-weight: 550;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  color: var(--fg);
+}
+
+.nav a[aria-current="page"] {
+  color: var(--fg);
+  font-weight: 650;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14.5px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:link,
+.btn:visited,
+.btn:hover,
+.btn:active {
+  color: #fff;
+}
+
+.btn:hover {
+  filter: brightness(1.06);
+}
+
+.btn-lg {
+  padding: 13px 20px;
+  font-size: 16px;
+}
+
+.nav .btn {
+  margin-left: 4px;
+}
+
+/* Hero --------------------------------------------------------------- */
+
+.hero {
+  padding: 14px 0 0;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(26px, 4.2vw, 38px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+}
+
+.lede {
+  max-width: 58ch;
+  margin: 10px 0 0;
+  color: var(--fg-muted);
+  font-size: clamp(16px, 2vw, 18px);
+}
+
+/* Steps -------------------------------------------------------------- */
+
+.steps {
+  margin: 18px 0 16px;
+  padding: 0;
+  list-style: none;
+  counter-reset: step var(--step-start, 0);
+}
+
+.steps li {
+  position: relative;
+  padding: 5px 0 5px 44px;
+  counter-increment: step;
+}
+
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 5px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--marker);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.steps strong {
+  font-weight: 650;
+}
+
+/* Screenshot with its markers ---------------------------------------- */
+
+.shot {
+  position: relative;
+  width: min(100%, 840px);
+  margin: 0 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shot-shadow);
+  overflow: hidden;
+  line-height: 0;
+}
+
+.shot picture,
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.marks {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--marker);
+  filter: drop-shadow(0 2px 6px rgb(0 0 0 / 22%));
+}
+
+.marks .ring {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 8;
+}
+
+.marks .arrow {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 10;
+  stroke-linecap: round;
+}
+
+.marks .badge {
+  fill: currentColor;
+}
+
+.marks .num {
+  fill: #fff;
+  font-family: inherit;
+  font-size: 78px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+/* Step 3 block and footer -------------------------------------------- */
+
+.open {
+  margin-top: 4px;
+}
+
+.step-caption {
+  max-width: 62ch;
+  margin: 0 0 16px;
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.45;
+}
+
+.step-caption strong {
+  font-weight: 700;
+}
+
+.note {
+  max-width: 62ch;
+  margin: 0 0 34px;
+  color: var(--fg-muted);
+}
+
+.note strong {
+  color: var(--fg);
+  font-weight: 650;
+}
+
+.foot {
+  padding: 22px 0 40px;
+  border-top: 1px solid var(--line);
+  color: var(--fg-muted);
+  font-size: 14.5px;
+}
+
+.foot-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.foot a {
+  color: var(--fg-muted);
+  text-decoration: none;
+}
+
+.foot a:hover {
+  color: var(--fg);
+}
+
+/* Home --------------------------------------------------------------- */
+
+.home-hero {
+  padding: 48px 0 28px;
+}
+
+.home-hero .lede {
+  margin-top: 14px;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 18px;
+  margin-top: 22px;
+}
+
+.cta-note {
+  color: var(--fg-muted);
+  font-size: 14.5px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px 28px;
+  margin: 8px 0 40px;
+  padding: 28px 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.feature h2 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.feature p {
+  margin: 0;
+  color: var(--fg-muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.home-privacy {
+  max-width: 62ch;
+  margin: 0 0 40px;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--line);
+  color: var(--fg-muted);
+  font-size: 15px;
+}
+
+.home-privacy a {
+  color: var(--fg);
+  font-weight: 550;
+}
+
+/* Help / Privacy prose ----------------------------------------------- */
+
+.prose {
+  max-width: 68ch;
+  padding: 8px 0 28px;
+}
+
+.prose h2 {
+  margin: 28px 0 10px;
+  font-size: clamp(20px, 2.6vw, 24px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.prose h2:first-child {
+  margin-top: 8px;
+}
+
+.prose p,
+.prose li {
+  color: var(--fg-muted);
+}
+
+.prose p {
+  margin: 0 0 12px;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0 0 14px;
+  padding-left: 1.2em;
+}
+
+.prose li {
+  margin: 0 0 6px;
+}
+
+.prose strong {
+  color: var(--fg);
+  font-weight: 650;
+}
+
+.prose a {
+  color: var(--accent);
+  font-weight: 550;
+}
+
+.prose code,
+.home-privacy code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+.toc {
+  margin: 18px 0 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.toc li {
+  margin: 0;
+  padding: 4px 0;
+}
+
+.toc a {
+  color: var(--fg);
+  font-weight: 550;
+  text-decoration: none;
+}
+
+.toc a:hover {
+  color: var(--accent);
+}
+
+a:focus-visible,
+.brand:focus-visible,
+.btn:focus-visible,
+.nav a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (max-width: 780px) {
+  .features {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+}
+
+@media (max-width: 560px) {
+  body {
+    font-size: 16px;
+  }
+
+  .masthead {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .nav .btn {
+    margin-left: 0;
+  }
+
+  .home-hero {
+    padding-top: 28px;
+  }
+
+  .steps li {
+    padding-left: 38px;
+  }
+
+  .steps li::before {
+    width: 26px;
+    height: 26px;
+    font-size: 14px;
+  }
+
+  .shot {
+    width: 100%;
+  }
+}

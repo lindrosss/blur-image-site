@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#14b8a6"/>
+    </linearGradient>
+    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <clipPath id="tile">
+      <rect width="128" height="128" rx="28"/>
+    </clipPath>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+  <g clip-path="url(#tile)">
+    <circle cx="46" cy="80" r="26" fill="#ffffff" opacity="0.9" filter="url(#soft)"/>
+    <circle cx="46" cy="80" r="13" fill="#ffffff" opacity="0.55" filter="url(#soft)"/>
+  </g>
+  <circle cx="87" cy="42" r="17" fill="#ffffff"/>
+</svg>

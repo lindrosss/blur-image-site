@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blur Image Online is installed</title>
+    <meta
+      name="description"
+      content="Pin Blur Image Online to the Chrome toolbar and open the editor to blur, pixelate, or redact a photo locally."
+    />
+    <link rel="icon" href="../assets/img/icon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="../assets/img/icon-128.png" />
+    <link rel="stylesheet" href="../assets/welcome.css" />
+  </head>
+  <body>
+    <header class="masthead wrap">
+      <a class="brand" href="../">
+        <img src="../assets/img/icon-48.png" alt="" width="48" height="48" />
+        Blur Image Online
+      </a>
+      <ul class="nav">
+        <li><a href="../">Home</a></li>
+        <li><a href="../help/">Help</a></li>
+        <li>
+          <a class="btn" href="#install">Install the extension</a>
+        </li>
+      </ul>
+    </header>
+
+    <main class="wrap">
+      <div class="hero">
+        <p class="eyebrow">Installed</p>
+        <h1>Thanks for installing Blur Image Online</h1>
+        <p class="lede">
+          Pin it to the toolbar first, so the editor is always one click away.
+        </p>
+      </div>
+
+      <ol class="steps">
+        <li>
+          Click the <strong>puzzle piece</strong> in the top right of Chrome.
+        </li>
+        <li>Click the <strong>pin</strong> next to Blur Image Online.</li>
+      </ol>
+
+      <figure class="shot">
+        <picture>
+          <source
+            media="(prefers-color-scheme: dark)"
+            srcset="
+              ../assets/img/step-pin-dark.webp    1000w,
+              ../assets/img/step-pin-dark@2x.webp 2000w
+            "
+            sizes="(max-width: 880px) 100vw, 840px"
+          />
+          <img
+            src="../assets/img/step-pin-light.webp"
+            srcset="
+              ../assets/img/step-pin-light.webp    1000w,
+              ../assets/img/step-pin-light@2x.webp 2000w
+            "
+            sizes="(max-width: 880px) 100vw, 840px"
+            width="1000"
+            height="709"
+            alt="The Chrome extensions menu is open and Blur Image Online is listed with a pin button next to its name."
+          />
+        </picture>
+
+        <!-- viewBox matches the top-right crop in prepare_screens.py (1270×900) -->
+        <svg class="marks" viewBox="0 0 1270 900" aria-hidden="true">
+          <defs>
+            <marker
+              id="arrow-pin"
+              viewBox="0 0 12 12"
+              refX="10"
+              refY="6"
+              markerWidth="5"
+              markerHeight="5"
+              orient="auto"
+            >
+              <path d="M1 1 L11 6 L1 11 Z" fill="currentColor" />
+            </marker>
+          </defs>
+
+          <circle class="ring" cx="1045" cy="127" r="48" />
+          <path
+            class="arrow"
+            d="M250 155 Q620 40 990 120"
+            marker-end="url(#arrow-pin)"
+          />
+          <circle class="badge" cx="140" cy="170" r="72" />
+          <text class="num" x="140" y="170">1</text>
+
+          <circle class="ring" cx="905" cy="437" r="42" />
+          <path
+            class="arrow"
+            d="M1080 620 Q1000 540 940 470"
+            marker-end="url(#arrow-pin)"
+          />
+          <circle class="badge" cx="1140" cy="680" r="68" />
+          <text class="num" x="1140" y="680">2</text>
+        </svg>
+      </figure>
+
+      <section class="open" id="open">
+        <p class="step-caption">
+          Open the extension <strong>(3)</strong>. The editor opens in its own
+          tab, not as a popup:
+        </p>
+
+        <figure class="shot">
+          <picture>
+            <source
+              media="(prefers-color-scheme: dark)"
+              srcset="
+                ../assets/img/step-open-dark.webp    1000w,
+                ../assets/img/step-open-dark@2x.webp 2000w
+              "
+              sizes="(max-width: 880px) 100vw, 840px"
+            />
+            <img
+              src="../assets/img/step-open-light.webp"
+              srcset="
+                ../assets/img/step-open-light.webp    1000w,
+                ../assets/img/step-open-light@2x.webp 2000w
+              "
+              sizes="(max-width: 880px) 100vw, 840px"
+              width="1000"
+              height="357"
+              alt="The Blur Image Online icon pinned in the Chrome toolbar."
+            />
+          </picture>
+
+          <!-- viewBox matches the top-right crop in prepare_screens.py (1120×400) -->
+          <svg class="marks" viewBox="0 0 1120 400" aria-hidden="true">
+            <defs>
+              <marker
+                id="arrow-open"
+                viewBox="0 0 12 12"
+                refX="10"
+                refY="6"
+                markerWidth="5"
+                markerHeight="5"
+                orient="auto"
+              >
+                <path d="M1 1 L11 6 L1 11 Z" fill="currentColor" />
+              </marker>
+            </defs>
+
+            <circle class="ring" cx="822" cy="126" r="44" />
+            <path
+              class="arrow"
+              d="M280 160 Q520 40 770 118"
+              marker-end="url(#arrow-open)"
+            />
+            <circle class="badge" cx="180" cy="180" r="72" />
+            <text class="num" x="180" y="180">3</text>
+          </svg>
+        </figure>
+      </section>
+
+      <p class="note">
+        Drag a photo in, paste it, or choose a file. Paint with the brush or
+        draw a box, pick blur, pixelate, or a black box, then save. More detail
+        is on <a href="../help/">Help</a>.
+      </p>
+    </main>
+
+    <footer class="foot wrap">
+      <ul class="foot-links">
+        <li><a href="../">Home</a></li>
+        <li><a href="./">Welcome</a></li>
+        <li><a href="../help/">Help</a></li>
+        <li><a href="../privacy/">Privacy</a></li>
+      </ul>
+      <p>
+        Everything runs locally. Blur Image Online makes no network requests;
+        images stay in your browser.
+      </p>
+    </footer>
+  </body>
+</html>
